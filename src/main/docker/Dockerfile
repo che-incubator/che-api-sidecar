@@ -1,3 +1,15 @@
+#
+# Copyright (c) 2019-2020 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+# Contributors:
+#   Red Hat, Inc. - initial API and implementation
+#
+
 FROM registry.centos.org/centos/centos:latest as builder
 
 # The following lines are needed to set the correct locale after `yum update`
@@ -11,7 +23,7 @@ RUN yum -y update && \
     yum clean all && \
     rm -rf /tmp/* /var/cache/yum
 
-ADD src/main/docker/copy-libraries.sh /work/copy-libraries.sh
+COPY src/main/docker/copy-libraries.sh /work/copy-libraries.sh
 COPY target/*-runner /dist/application
 COPY target/libsunec.so /dist/libsunec.so
 
