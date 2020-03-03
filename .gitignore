@@ -30,3 +30,4 @@ target
 
 # editor files
 .project
+.vscode
