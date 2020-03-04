@@ -1,0 +1,4 @@
+# Note: this dockerignore is used by both the native binary and final container builds
+target
+!target/*-runner
+!target/libsunec.so

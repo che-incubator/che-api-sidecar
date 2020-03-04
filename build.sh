@@ -23,7 +23,7 @@ docker build --ulimit nofile=122880:122880 -m 5G -t che-rest-apis-builder -f bui
 
 echo "Copying binary to ./target"
 docker create --name builder che-rest-apis-builder
-docker cp builder:/usr/src/app/target ./target
+docker cp builder:/usr/src/app/target ./target/
 docker rm builder
 
 echo "Building che-rest-apis image"
