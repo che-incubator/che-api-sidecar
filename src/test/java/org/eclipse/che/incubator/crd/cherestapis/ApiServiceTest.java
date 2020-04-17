@@ -12,22 +12,9 @@
 
 package org.eclipse.che.incubator.crd.cherestapis;
 
-import io.kubernetes.client.ApiException;
 import io.quarkus.test.junit.QuarkusTest;
 
-import org.apache.commons.io.IOUtils;
-import org.eclipse.che.api.core.ServerException;
-import org.eclipse.che.api.core.ValidationException;
-import org.eclipse.che.api.workspace.server.devfile.exception.DevfileException;
-import org.eclipse.che.api.workspace.server.model.impl.devfile.DevfileImpl;
-import org.eclipse.che.api.workspace.shared.dto.WorkspaceDto;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.inject.Inject;
 
@@ -44,14 +31,14 @@ public class ApiServiceTest {
 
     // TODO: Commit 648156a in the original repo https://github.com/che-incubator/che-workspace-operator
     // sets workspace.getConfig() to null directly, causing an NPE in this test.
-    @Disabled
-    @Test
-    public void parseDevfile()
-            throws IOException, ServerException, DevfileException, ValidationException, ApiException {
-        InputStream stream = this.getClass().getResourceAsStream("devfiles/petclinic-sample.yaml");
-        String devfileYaml = IOUtils.toString(stream);
-        DevfileImpl devfile = service.parseDevFile(devfileYaml);
-        WorkspaceDto workspace = service.convertToWorkspace(devfile, null);
-        Assertions.assertEquals(workspace.getConfig().getName(), "petclinic");
-    }
+    // @Disabled
+    // @Test
+    // public void parseDevfile()
+    //         throws IOException, ServerException, DevfileException, ValidationException, ApiException {
+    //     InputStream stream = this.getClass().getResourceAsStream("devfiles/petclinic-sample.yaml");
+    //     String devfileYaml = IOUtils.toString(stream, StandardCharsets.UTF_8);
+    //     DevfileImpl devfile = service.parseDevFile(devfileYaml);
+    //     WorkspaceDto workspace = service.convertToWorkspace(devfile, null);
+    //     Assertions.assertEquals(workspace.getConfig().getName(), "petclinic");
+    // }
 }
