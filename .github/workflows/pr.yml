@@ -1,0 +1,17 @@
+name: Validate PRs
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  docker:
+    name: Check docker build
+    runs-on: ubuntu-18.04
+    steps:
+    -
+      name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    -
+      name: Build che api sidecar dockerimage
+      run: ./docker-build.sh
