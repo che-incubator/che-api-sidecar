@@ -14,17 +14,10 @@
 # Parameters:
 #   $1 - docker tag used for final image
 
-DEFAULT_TAG="che-rest-apis"
+DEFAULT_TAG="che-api-sidecar:local"
 FINAL_TAG=${1:-$DEFAULT_TAG}
-echo "Building image using tag $FINAL_TAG"
 
-echo "Building che-rest-apis native binary in container"
-docker build --ulimit nofile=122880:122880 -m 5G -t che-rest-apis-builder -f build.Dockerfile .
+./docker-compile.sh
 
-echo "Copying binary to ./target"
-docker create --name builder che-rest-apis-builder
-docker cp builder:/usr/src/app/target ./target/
-docker rm builder
-
-echo "Building che-rest-apis image"
+echo "Building che-rest-apis image using tag $FINAL_TAG"
 docker build -t $FINAL_TAG -f ./src/main/docker/Dockerfile .
